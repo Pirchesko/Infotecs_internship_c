@@ -4,12 +4,7 @@
 
 class StringTools {
 public:
-	// Функция 1
-	void sortAndReplace(std::string& str);
-
-	// Функция 2
-	int calculateSum(const std::string str);
-
-	// Функция 3
-	bool analyzeString(const std::string str);
+	static void sortAndReplace(std::string& str); // Функция 1
+	static int calculateSum(const std::string str); // Функция 2
+	static bool analyzeString(const std::string str); // Функция 3
 };

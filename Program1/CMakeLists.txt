@@ -1,10 +1,10 @@
 ﻿project(Program1)
 
 # Создаем исполняемый файл
-add_executable(Program1 "Program1.cpp" "Program1.h")
+add_executable(Program1 "Program1.cpp" "Program1.h" "ThreadManager.h" "ThreadManager.cpp")
 
 # Связываем библиотеку с программой
-target_link_libraries(Program1 PRIVATE Library)
+target_link_libraries(Program1 PRIVATE Library pthread)
 
 # Для Visual Studio копирование библиотеки к exe
 add_custom_command(TARGET Program1 POST_BUILD

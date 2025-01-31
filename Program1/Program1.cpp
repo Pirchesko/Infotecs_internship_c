@@ -1,22 +1,22 @@
 ﻿#include "Program1.h"
-#include "../Library/Library.h"
+#include "ThreadManager.h"
+//#include "../Library/Library.h"
 
 using namespace std;
 
 int main()
 {
-    StringTools strTools;
-    string str = "234732";
-    strTools.sortAndReplace(str);
-    cout << str << endl;
+    ThreadManager threadManager;
+    g_threadManager = &threadManager;
+    std::signal(SIGINT, signalHandler);
 
-    cout << strTools.calculateSum("1sdf2jbjh3llh4hy5bh67bh8kj9bh0") << endl;
+    threadManager.start(); // Запуск потоков
 
-    cout << strTools.analyzeString("s") << endl;
-    cout << strTools.analyzeString("s1") << endl;
-    cout << strTools.analyzeString("s1sdffvsddvsdvvsdvsdsdvsdvsdd") << endl;
-    cout << strTools.analyzeString("s1sdffvsddvsdvvsdvsdsdvsdvsddsdfsfdfsdfsdfsdfsfsdfsdfsdfsggsfdgd") << endl;
-    cout << strTools.analyzeString("s1sdffvsddvsdvvsdvsdsdvsdvsddsdfsdffsdfsdfsdfsfsdfsdfsdfsggsfdgdd") << endl;
-    cout << strTools.analyzeString("s1sdffvsddvsdvvsdvsdsdvsdvsddsdfsfdfsdfsdfsdfsfsdfsdfsdfsggsfdd") << endl;
-    cout << strTools.analyzeString("s1sdffvsddvsdvvsdvsdsdvsdvsddsdf") << endl;
+    // Бесконечный цикл, чтобы программа не завершалась
+    while (!threadManager.isStopped()) {
+        std::this_thread::sleep_for(std::chrono::seconds(1));
+    }
+    std::cout << "Main thread is stopped" << std::endl;
+
+    return 0;
 }

@@ -1,6 +1,6 @@
-#include "SocketServer.h"
+п»ї#include "SocketServer.h"
 
-// Глобальная переменная чтобы можно было завершить программу по Ctrl+C
+// Р“Р»РѕР±Р°Р»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ Р·Р°РІРµСЂС€РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ РїРѕ Ctrl+C
 SocketServer* g_socketServer = nullptr;
 void signalHandler(int signum) {
     if (g_socketServer) {
@@ -20,9 +20,9 @@ bool SocketServer::bindAndListen() {
         return false;
     }
 
-    // При рестарте порограммы сокет слишком медленно закрыввается и не успвает закрыться
-    // Поэтому сделаем возможность использовавть повторно такого же порта и адреса
-    // Устанавливаем опцию SO_REUSEADDR
+    // РџСЂРё СЂРµСЃС‚Р°СЂС‚Рµ РїРѕСЂРѕРіСЂР°РјРјС‹ СЃРѕРєРµС‚ СЃР»РёС€РєРѕРј РјРµРґР»РµРЅРЅРѕ Р·Р°РєСЂС‹РІРІР°РµС‚СЃСЏ Рё РЅРµ СѓСЃРїРІР°РµС‚ Р·Р°РєСЂС‹С‚СЊСЃСЏ
+    // РџРѕСЌС‚РѕРјСѓ СЃРґРµР»Р°РµРј РІРѕР·РјРѕР¶РЅРѕСЃС‚СЊ РёСЃРїРѕР»СЊР·РѕРІР°РІС‚СЊ РїРѕРІС‚РѕСЂРЅРѕ С‚Р°РєРѕРіРѕ Р¶Рµ РїРѕСЂС‚Р° Рё Р°РґСЂРµСЃР°
+    // РЈСЃС‚Р°РЅР°РІР»РёРІР°РµРј РѕРїС†РёСЋ SO_REUSEADDR
     int opt = 1;
     if (setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &opt, sizeof(opt)) < 0) {
         std::cout << "Error setting socket options" << std::endl;
@@ -56,7 +56,7 @@ std::string SocketServer::receiveData(int clientSock) {
     char buffer[128] = { 0 };
     int bytesRead = recv(clientSock, buffer, sizeof(buffer), 0);
     if (bytesRead <= 0) {
-        return ""; // Пустой строкой указываем на закрытие соединения
+        return ""; // РџСѓСЃС‚РѕР№ СЃС‚СЂРѕРєРѕР№ СѓРєР°Р·С‹РІР°РµРј РЅР° Р·Р°РєСЂС‹С‚РёРµ СЃРѕРµРґРёРЅРµРЅРёСЏ
     }
     return std::string(buffer, bytesRead);
 }

@@ -1,7 +1,7 @@
-project(Library)
+п»їproject(Library)
 
-# Создание динамической библиотеки
+# РЎРѕР·РґР°РЅРёРµ РґРёРЅР°РјРёС‡РµСЃРєРѕР№ Р±РёР±Р»РёРѕС‚РµРєРё
 add_library(Library SHARED Library.cpp)
 
-# Библиотека использует заголовочные файлы
+# Р‘РёР±Р»РёРѕС‚РµРєР° РёСЃРїРѕР»СЊР·СѓРµС‚ Р·Р°РіРѕР»РѕРІРѕС‡РЅС‹Рµ С„Р°Р№Р»С‹
 target_include_directories(Library PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})

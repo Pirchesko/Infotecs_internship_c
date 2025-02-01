@@ -1,10 +1,10 @@
-#include "Library.h"
+п»ї#include "Library.h"
 
 void StringTools::sortAndReplace(std::string& str) {
     std::vector<char>digits;
     std::string new_str;
 
-    // Сначала на всякий случай берём из строки только цифры (хотя всё равно предполагается, что будут только они)
+    // РЎРЅР°С‡Р°Р»Р° РЅР° РІСЃСЏРєРёР№ СЃР»СѓС‡Р°Р№ Р±РµСЂС‘Рј РёР· СЃС‚СЂРѕРєРё С‚РѕР»СЊРєРѕ С†РёС„СЂС‹ (С…РѕС‚СЏ РІСЃС‘ СЂР°РІРЅРѕ РїСЂРµРґРїРѕР»Р°РіР°РµС‚СЃСЏ, С‡С‚Рѕ Р±СѓРґСѓС‚ С‚РѕР»СЊРєРѕ РѕРЅРё)
     for (size_t i = 0; i < str.length(); i++) {
         char symbol = str[i];
         if (symbol >= '0' && symbol <= '9') {

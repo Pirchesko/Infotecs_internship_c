@@ -1,4 +1,4 @@
-#include "SocketClient.h"
+п»ї#include "SocketClient.h"
 
 SocketClient::SocketClient() : SocketManager() {
 }
@@ -29,8 +29,8 @@ bool SocketClient::connectToServer() {
 }
 
 bool SocketClient::reconnect() {
-    closeSocket(); // Закрываем текущее соединение, если оно есть
-    return connectToServer(); // Пытаемся подключиться снова
+    closeSocket(); // Р—Р°РєСЂС‹РІР°РµРј С‚РµРєСѓС‰РµРµ СЃРѕРµРґРёРЅРµРЅРёРµ, РµСЃР»Рё РѕРЅРѕ РµСЃС‚СЊ
+    return connectToServer(); // РџС‹С‚Р°РµРјСЃСЏ РїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ СЃРЅРѕРІР°
 }
 
 void SocketClient::sendData(const std::string& data) {
@@ -38,7 +38,7 @@ void SocketClient::sendData(const std::string& data) {
         connectToServer();
     }
 
-    // Проверяем, подключен ли сокет
+    // РџСЂРѕРІРµСЂСЏРµРј, РїРѕРґРєР»СЋС‡РµРЅ Р»Рё СЃРѕРєРµС‚
     int error;
     socklen_t len = sizeof(error);
     if (getsockopt(sock, SOL_SOCKET, SO_ERROR, &error, &len) < 0) {
@@ -46,17 +46,17 @@ void SocketClient::sendData(const std::string& data) {
         return;
     }
 
-    // Если сокет уже закрылся у сервера а мы всё равно пытаемся отправить...
+    // Р•СЃР»Рё СЃРѕРєРµС‚ СѓР¶Рµ Р·Р°РєСЂС‹Р»СЃСЏ Сѓ СЃРµСЂРІРµСЂР° Р° РјС‹ РІСЃС‘ СЂР°РІРЅРѕ РїС‹С‚Р°РµРјСЃСЏ РѕС‚РїСЂР°РІРёС‚СЊ...
     if (error != 0) {
         std::cerr << "Socket error: " << std::strerror(error) << std::endl;
-        // Пытаемся переподключиться
+        // РџС‹С‚Р°РµРјСЃСЏ РїРµСЂРµРїРѕРґРєР»СЋС‡РёС‚СЊСЃСЏ
         if (!reconnect()) {
             std::cout << "Failed to reconnect to server. Skip data." << std::endl;
             return;
         }
     }
 
-    // Если сокет в порядке, отправляем данные
+    // Р•СЃР»Рё СЃРѕРєРµС‚ РІ РїРѕСЂСЏРґРєРµ, РѕС‚РїСЂР°РІР»СЏРµРј РґР°РЅРЅС‹Рµ
     ssize_t bytesSent = send(sock, data.c_str(), data.size(), 0);
     if (bytesSent == -1) {
         std::cout << "Error in send data. Skip data." << std::endl;

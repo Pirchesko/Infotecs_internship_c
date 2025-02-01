@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <string>
 #include <algorithm>
@@ -6,7 +6,7 @@
 
 class StringTools {
 public:
-	static void sortAndReplace(std::string& str); // Функция 1
-	static int calculateSum(const std::string str); // Функция 2
-	static bool analyzeString(const std::string str); // Функция 3
+	static void sortAndReplace(std::string& str); // Р¤СѓРЅРєС†РёСЏ 1
+	static int calculateSum(const std::string str); // Р¤СѓРЅРєС†РёСЏ 2
+	static bool analyzeString(const std::string str); // Р¤СѓРЅРєС†РёСЏ 3
 };

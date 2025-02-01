@@ -1,4 +1,4 @@
-#include "SocketManager.h"
+﻿#include "SocketManager.h"
 
 SocketManager::SocketManager() {
     ip = "127.0.0.1";

@@ -1,6 +1,6 @@
-#include "ThreadManager.h"
+п»ї#include "ThreadManager.h"
 
-// Глобальная переменная чтобы можно было завершить программу по Ctrl+C
+// Р“Р»РѕР±Р°Р»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ С‡С‚РѕР±С‹ РјРѕР¶РЅРѕ Р±С‹Р»Рѕ Р·Р°РІРµСЂС€РёС‚СЊ РїСЂРѕРіСЂР°РјРјСѓ РїРѕ Ctrl+C
 ThreadManager* g_threadManager = nullptr;
 void signalHandler(int signum) {
     if (g_threadManager) {
@@ -44,7 +44,7 @@ bool ThreadManager::isStopped() {
 void ThreadManager::inputer() {
     std::cout << "[Program: 1][Thread: 1] Started! (inputer)" << std::endl;
     while (!stopFlag) {
-        // Микро задержка просто для того чтобы cout на следующей строке вывелся
+        // РњРёРєСЂРѕ Р·Р°РґРµСЂР¶РєР° РїСЂРѕСЃС‚Рѕ РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ cout РЅР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕРєРµ РІС‹РІРµР»СЃСЏ
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         std::string inputData;
         std::cout << "[Program: 1][Thread: 1] Write string with only digits (max 64 symbols): ";
@@ -81,7 +81,7 @@ bool ThreadManager::checkBuffer() {
 }
 
 void ThreadManager::reader() {
-    // Микро задержка просто для того чтобы cout на старте на следующей строчке вывелся
+    // РњРёРєСЂРѕ Р·Р°РґРµСЂР¶РєР° РїСЂРѕСЃС‚Рѕ РґР»СЏ С‚РѕРіРѕ С‡С‚РѕР±С‹ cout РЅР° СЃС‚Р°СЂС‚Рµ РЅР° СЃР»РµРґСѓСЋС‰РµР№ СЃС‚СЂРѕС‡РєРµ РІС‹РІРµР»СЃСЏ
     std::this_thread::sleep_for(std::chrono::milliseconds(1));
     std::cout << "[Program: 1][Thread: 2] Started! (reader)" << std::endl;
     while (!stopFlag) {
@@ -99,7 +99,7 @@ void ThreadManager::reader() {
         int sum = StringTools::calculateSum(readData);
         std::cout << "[Program: 1][Thread: 2] Sum digits: " << sum << std::endl;
 
-        // Передача в программу 2
+        // РџРµСЂРµРґР°С‡Р° РІ РїСЂРѕРіСЂР°РјРјСѓ 2
         socketClient.sendData(readData);
     }
     std::cout << "[Program: 1][Thread: 2] Stopped! (reader)" << std::endl;

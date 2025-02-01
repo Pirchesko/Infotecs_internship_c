@@ -1,4 +1,4 @@
-#pragma once
+п»ї#pragma once
 
 #include <thread>
 #include <mutex>
@@ -31,7 +31,7 @@ private:
     void reader();
 };
 
-// Глобальная переменная для SIGINT
+// Р“Р»РѕР±Р°Р»СЊРЅР°СЏ РїРµСЂРµРјРµРЅРЅР°СЏ РґР»СЏ SIGINT
 extern ThreadManager* g_threadManager;
 void signalHandler(int signum);
 

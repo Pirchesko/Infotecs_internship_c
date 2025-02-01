@@ -9,6 +9,7 @@
 #include <csignal>
 #include <iostream>
 #include "../Library/Library.h"
+#include "../Program2/SocketClient.h"
 
 class ThreadManager {
 public:
@@ -33,3 +34,5 @@ private:
 // Глобальная переменная для SIGINT
 extern ThreadManager* g_threadManager;
 void signalHandler(int signum);
+
+extern SocketClient socketClient;

@@ -8,8 +8,13 @@ void signalHandler(int signum) {
     }
 }
 
+SocketClient socketClient;
+
 ThreadManager::ThreadManager() {
     stopFlag = false;
+    if (!socketClient.connectToServer()) {
+        std::cout << "Failed to connect to Program 2" << std::endl;
+    }
 }
 
 ThreadManager::~ThreadManager() {
@@ -39,10 +44,12 @@ bool ThreadManager::isStopped() {
 void ThreadManager::inputer() {
     std::cout << "[Program: 1][Thread: 1] Started! (inputer)" << std::endl;
     while (!stopFlag) {
+        // Микро задержка просто для того чтобы cout на следующей строке вывелся
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
         std::string inputData;
         std::cout << "[Program: 1][Thread: 1] Write string with only digits (max 64 symbols): ";
         std::cin >> inputData;
-
+        
         if (inputData.length() > 64) {
             std::cout << "[Program: 1][Thread: 1] Error: string is more than 64 symbols!" << std::endl;
             continue;
@@ -74,6 +81,8 @@ bool ThreadManager::checkBuffer() {
 }
 
 void ThreadManager::reader() {
+    // Микро задержка просто для того чтобы cout на старте на следующей строчке вывелся
+    std::this_thread::sleep_for(std::chrono::milliseconds(1));
     std::cout << "[Program: 1][Thread: 2] Started! (reader)" << std::endl;
     while (!stopFlag) {
         std::string readData;
@@ -90,7 +99,8 @@ void ThreadManager::reader() {
         int sum = StringTools::calculateSum(readData);
         std::cout << "[Program: 1][Thread: 2] Sum digits: " << sum << std::endl;
 
-        //передача в программу 2
+        // Передача в программу 2
+        socketClient.sendData(readData);
     }
     std::cout << "[Program: 1][Thread: 2] Stopped! (reader)" << std::endl;
 }

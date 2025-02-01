@@ -1,7 +1,4 @@
 #include "Library.h"
-#include <algorithm>
-#include <vector>
-
 
 void StringTools::sortAndReplace(std::string& str) {
     std::vector<char>digits;

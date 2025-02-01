@@ -1,13 +1,16 @@
 ﻿project(Program1)
 
 # Создаем исполняемый файл
-add_executable(Program1 "Program1.cpp" "Program1.h" "ThreadManager.h" "ThreadManager.cpp")
+add_executable(Program1 Program1.cpp ThreadManager.cpp)
 
 # Связываем библиотеку с программой
-target_link_libraries(Program1 PRIVATE Library pthread)
+target_link_libraries(Program1 PRIVATE Library)
 
-# Для Visual Studio копирование библиотеки к exe
-add_custom_command(TARGET Program1 POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy
-    $<TARGET_FILE:Library>
-    $<TARGET_FILE_DIR:Program1>)
+# Программа 1 зависит от заголовков из Library
+target_include_directories(Program1 PRIVATE ${CMAKE_CURRENT_SOURCE_DIR} ../Library)
+
+# Добавляем исходные файлы для SocketClient и SocketManager
+target_sources(Program1 PRIVATE
+    ../Program2/SocketClient.cpp
+    ../Program2/SocketManager.cpp
+)

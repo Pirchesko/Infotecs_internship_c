@@ -100,7 +100,7 @@ void ThreadManager::reader() {
         std::cout << "[Program: 1][Thread: 2] Sum digits: " << sum << std::endl;
 
         // Передача в программу 2
-        socketClient.sendData(readData);
+        socketClient.sendData(std::to_string(sum));
     }
     std::cout << "[Program: 1][Thread: 2] Stopped! (reader)" << std::endl;
 }

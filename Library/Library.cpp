@@ -40,7 +40,8 @@ int StringTools::calculateSum(const std::string str) {
 }
 
 bool StringTools::analyzeString(const std::string str) {
-    if (str.length() > 2 && str.length() % 32 == 0) {
+    int number = std::atoi(str.c_str());
+    if (std::to_string(number).length() > 2 && number % 32 == 0) {
         return true;
     }
     else {
